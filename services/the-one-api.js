@@ -22,12 +22,16 @@ Notes:
 
 
 const axios = require('axios');
-const theOneAccessToken = 'tM6w_b6XXIbgWKXRWtf3';
 
 
 /**The main Client object allowing access to the-one-api Lord of the Rings data */
 class TheOneAPIClient {
+    
   constructor() {
+    //---load then ENV vars
+    require('dotenv').config();
+    console.log(process.env.THE_ONE_ACCESS_TOKEN);
+
     //---Cache placement
     this.movies = [];
     this.quotes = [];
@@ -36,7 +40,7 @@ class TheOneAPIClient {
     this.baseURL = 'https://the-one-api.dev/v2';
     this.authConfig = {
         headers: {
-          'Authorization': `Bearer ${theOneAccessToken}`,
+          'Authorization': `Bearer ${process.env.THE_ONE_ACCESS_TOKEN}`,
         },
       };
   }
